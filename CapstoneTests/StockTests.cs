@@ -11,7 +11,7 @@ namespace CapstoneTests
         [TestMethod]
         public void StockListIsProperlyCreatedFromTextFile()
         {
-            Stock stock = new Stock("vendingmachine.csv");
+            Stocker stock = new Stocker("vendingmachine.csv");
 
             List<Item> items = stock.CreateStockList();
 

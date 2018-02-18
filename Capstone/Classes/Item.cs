@@ -14,12 +14,6 @@ namespace Capstone.Classes
         //defines price property
         public decimal Price { get; set; }
 
-        // default item constructor
-        public Item()
-        {
-
-        }
-
         //Constructor that sets Item with name and price
         public Item(string name, decimal price)
         {
@@ -28,10 +22,7 @@ namespace Capstone.Classes
         }
 
         // Method which consumes the item
-        public virtual string Consume()
-        {
-            return "";
-        }
+        public abstract string Consume();        
 
     }
 }

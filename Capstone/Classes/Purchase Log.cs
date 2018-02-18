@@ -32,18 +32,18 @@ namespace Capstone.Classes
                 Console.WriteLine("File could not be created.");
             }
         }
-        public string PrintFeedMoney(int dollars, decimal balance)
+        public void PrintFeedMoney(int dollars, decimal balance)
         {
-            return ($"{DateTime.Now} \t FEED MONEY \t {dollars.ToString("C")}\t {balance.ToString("C")}");  
+            PrintLog($"{DateTime.Now} \t FEED MONEY \t {dollars.ToString("C")}\t {balance.ToString("C")}");  
         }
-        public string PrintPurchase (string itemName, decimal price, decimal balance)
+        public void PrintPurchase (string itemName, decimal price, decimal balance)
         {
-            return ($"{DateTime.Now} \t {itemName} \t {price.ToString("C")}\t {balance.ToString("C")}");
+            PrintLog($"{DateTime.Now} \t {itemName} \t {price.ToString("C")}\t {balance.ToString("C")}");
 
         }
-        public string PrintChange (decimal balance)
+        public void PrintChange (decimal balance)
         {
-            return ($"{DateTime.Now} \t GIVE CHANGE \t {balance.ToString("C")}\t {0.00.ToString("C")}");
+            PrintLog($"{DateTime.Now} \t GIVE CHANGE \t {balance.ToString("C")}\t {0.00.ToString("C")}");
 
         }
     }

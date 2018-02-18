@@ -10,15 +10,15 @@ namespace Capstone.Classes
     {
         PurchaseLog log = new PurchaseLog("Log.txt");
 
-        public decimal Balance { get => MoneyGiven - TotalPurchasePrice; set { } } // amount in pennies
+        public decimal Balance { get => MoneyGivenInPennies - TotalPurchasePriceInPennies; } // amount in pennies
 
         public decimal BalanceInDollars { get => Balance / 100; }
 
         public string ChangeGiven { get; set; }
 
-        public decimal MoneyGiven { get; set; } // in pennies
+        public decimal MoneyGivenInPennies { get; set; } // in pennies
 
-        public decimal TotalPurchasePrice { get; set; } // in pennies
+        public decimal TotalPurchasePriceInPennies { get; set; } // in pennies
 
         public Transaction()
         {
@@ -56,13 +56,14 @@ namespace Capstone.Classes
             }
 
             ChangeGiven = change;
-            log.PrintLog(log.PrintChange(BalanceInDollars));// Change log
+            log.PrintChange(BalanceInDollars);// Change log
         }
 
         public void FinishTransaction()
         {
             MakeChange();
-            Balance = 0;
+            MoneyGivenInPennies = 0;
+            TotalPurchasePriceInPennies = 0;
         }
     }
 }

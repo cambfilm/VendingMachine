@@ -28,19 +28,32 @@ namespace Capstone.Classes
 
         public void FeedMoney(int dollars)
         {
-            Trans.MoneyGiven += 100 * dollars;
-            log.PrintLog(log.PrintFeedMoney(dollars, Trans.BalanceInDollars));// feedmoney log
+            Trans.MoneyGivenInPennies += 100 * dollars;
+            log.PrintFeedMoney(dollars, Trans.BalanceInDollars);// feedmoney log
         }
 
         public void PurchaseItem(string location)
         {
+            if (!Slots.ContainsKey(location))
+            {
+                throw new VendingMachineException("Invalid slot selection.");
+            }
+            if (Slots[location].IsEmpty)
+            {
+                throw new VendingMachineException("Item out of stock.");
+            }
+            if (Slots[location].Price > Trans.BalanceInDollars)
+            {
+                throw new VendingMachineException("Not enough money provided.");
+            }
+
             PurchasedItems.Add(GetItemFromSlot(location));
-            Trans.TotalPurchasePrice += 100 * GetItemFromSlot(location).Price;
-            log.PrintLog(log.PrintPurchase(GetItemFromSlot(location).Name, GetItemFromSlot(location).Price, Trans.BalanceInDollars));// purchase log
+            Trans.TotalPurchasePriceInPennies += 100 * GetItemFromSlot(location).Price;
+            log.PrintPurchase(GetItemFromSlot(location).Name, GetItemFromSlot(location).Price, Trans.BalanceInDollars);// purchase log
             Slots[location].RemoveItem();
         }
 
-        public void MakeSlots()
+        private void MakeSlots()
         {
             foreach(string location in locations)
             {
@@ -51,14 +64,14 @@ namespace Capstone.Classes
 
         public VendingMachine(string stockPath)
         {
-            Stock stock = new Stock(stockPath);
+            Stocker stock = new Stocker(stockPath);
             stockList = stock.CreateStockList();
             MakeSlots();
             StockSlots(stockList);
 
         }
 
-        public void StockSlots(List<Item> stockList)
+        private void StockSlots(List<Item> stockList)
         {
             for (int i = 0; i < stockList.Count; i++)
             {

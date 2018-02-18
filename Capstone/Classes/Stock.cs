@@ -7,11 +7,14 @@ using System.IO;
 
 namespace Capstone.Classes
 {
-    public class Stock
+    public class Stocker
     {
+        private const int Col_Name = 1;
+        private const int Col_Price = 2;
+
         public string Path { get; set; }
 
-        public Stock(string path)
+        public Stocker(string path)
         {
             Path = path;
         }
@@ -59,8 +62,8 @@ namespace Capstone.Classes
         private Chip CreateChip(string line)
         {
             string[] items = line.Split('|');
-            string name = items[1];
-            decimal price = decimal.Parse(items[2]);
+            string name = items[Col_Name];
+            decimal price = decimal.Parse(items[Col_Price]);
 
             Chip chip = new Chip(name, price);
 
@@ -70,8 +73,8 @@ namespace Capstone.Classes
         private Candy CreateCandy(string line)
         {
             string[] items = line.Split('|');
-            string name = items[1];
-            decimal price = decimal.Parse(items[2]);
+            string name = items[Col_Name];
+            decimal price = decimal.Parse(items[Col_Price]);
 
             Candy candy = new Candy(name, price);
 
@@ -81,8 +84,8 @@ namespace Capstone.Classes
         private Drink CreateDrink(string line)
         {
             string[] items = line.Split('|');
-            string name = items[1];
-            decimal price = decimal.Parse(items[2]);
+            string name = items[Col_Name];
+            decimal price = decimal.Parse(items[Col_Price]);
 
             Drink drink = new Drink(name, price);
 
@@ -92,8 +95,8 @@ namespace Capstone.Classes
         private Gum CreateGum(string line)
         {
             string[] items = line.Split('|');
-            string name = items[1];
-            decimal price = decimal.Parse(items[2]);
+            string name = items[Col_Name];
+            decimal price = decimal.Parse(items[Col_Price]);
 
             Gum gum = new Gum(name, price);
 

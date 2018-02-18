@@ -27,6 +27,7 @@ namespace Capstone.Classes
                 Console.WriteLine();
                 Console.WriteLine("(1) Display Vending Machine Items");
                 Console.WriteLine("(2) Purchase a Delicious Treat");
+                Console.WriteLine("(3) Quit");
                 string input = Console.ReadLine();
 
                 if (input == "1")
@@ -37,9 +38,11 @@ namespace Capstone.Classes
                 else if (input == "2")
                 {
                     Purchase();
+                }
+                else if (input == "3")
+                {
                     break;
                 }
-
             }
         }
         public void Purchase()
@@ -102,8 +105,7 @@ namespace Capstone.Classes
                         {
                             Console.WriteLine($"You don't have enough money. Your balance is { vm.Trans.BalanceInDollars.ToString("C")}.");
                             Console.WriteLine();
-                        }
-                       
+                        }                       
                         else
                         {
                             vm.PurchaseItem(input);

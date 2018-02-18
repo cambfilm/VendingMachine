@@ -12,7 +12,7 @@ namespace CapstoneTests
         {
             Transaction trans = new Transaction();
 
-            trans.MoneyGiven = 80;
+            trans.MoneyGivenInPennies = 80;
             trans.MakeChange();
 
             string result = trans.ChangeGiven;
